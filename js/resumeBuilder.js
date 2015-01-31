@@ -14,6 +14,13 @@ var work = {
 		"location":"New York",
 		"dates":"1/1/2007 - 7/31/2009",
 		"description" : "Planner <br> Plan transportation projects and manage GIS datasets"
+	},
+	{
+		"employer": "DCP",
+		"title": "College Aid",
+		"location":"New York",
+		"dates":"7/1/2004 - 12/31/2006",
+		"description" : "Planner <br> Plan transportation projects and manage GIS datasets"
 	}
 	]
 	//display: function taking no parameters
