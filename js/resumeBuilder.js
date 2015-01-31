@@ -1,117 +1,134 @@
-var name = "seth hotpepper";
-var role = "developer";
-//$("#main").append(name)
-//string.replace(old, new);
-
-
-var email ="seth@hotmail.com";
-var newEmail = email.replace("hotmail","gmail");
-console.log(email);
-console.log(newEmail);
-
-var awesomeThoughts = "My name is "+name+" and i am awesome";
-
-var funThoughts = 
-	awesomeThoughts.replace("awesome", "fun");
-
-//$("#main").append(funThoughts);
-
-//uses healper methods defined in helper.js - basically html formating set up for string replacement 
-var formattedName = HTMLheaderName.replace(
-	"%data%", name);
-
-var formattedRole = HTMLheaderRole.replace(
-	"%data%", role);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-var skills = ["awesomeness", "programming", "teaching", "JS"];
-//$("#main").append(skills.length);
-
-var bio = {
-	"name" : "seth hotpepper",
-    	"role" : role,
-    	"contacts" : {
-          "mobile": "555-555-5555",
-          "email": email,
-          "github": "https://github.com/hotpepper/",
-          "twitter": "@seth",
-          "location": "NYC"
-    	},
-    	"welcomeMessage": "Hello, chumps..." ,
-    	"skills": skills,
-    	"biopic": "images/fry.jpg"
-    	//display: function taking no parameters		
-	};
-	//"picture": "images/fry.jpg",
-	//"welcome": "Hello, chumps..."
-
-bio.city = "New York";//adds city to bio object
 
 var work = {
-	"jobs": {
+	"jobs": [
+	{
 		"employer": "DOT",
 		"title": "City Planner",
 		"location":"New York",
 		"dates":"8/1/2009 - Present",
-		"description" : "Senior Analyst"
+		"description" : "Senior Analyst <br>Play with data on maps, in databases, and in code."
+	},
+	{
+		"employer": "DCP",
+		"title": "City Planner",
+		"location":"New York",
+		"dates":"1/1/2007 - 7/31/2009",
+		"description" : "Planner <br> Plan transportation projects and manage GIS datasets"
 	}
+	]
 	//display: function taking no parameters
 };
 
 
+var projects = {
+	"projects": [
+		{
+			"title": "string ",
+			"dates": "string (works with a hyphen between them)",
+			"description": "string",
+			"images":["/images/sample.jpg", "/images/sample.jpg"]
+			//"display": function taking no parameters
+		},
+		{
+			"title": "string",
+			"dates": "string - string",
+			"description": "string",
+			"images":["images/fry.jpg", "images/fry.jpg"]
+			//"display": function taking no parameters
+		}
+	]
+};
+
+var bio = {
+	"name" : "Seth Hotpepper",
+    	"role" : "role",
+    	"contacts" : {
+    		"mobile": "555-555-5555",
+    		"email": "heyseth@hotmail.com",
+    		"github": "https://github.com/hotpepper/",
+    		"twitter": "@qns0709",
+    		"location": "New York, New York"
+    	},
+    	"welcomeMessage": "Hello, chumps..." ,
+    	"skills": ["GIS", "Python", "SQL", "HTML", "CSS","JavaScript"],
+    	"biopic": "images/fry.jpg"
+    	//display: function taking no parameters		
+	};
+
+
+
 var education = {
-	"schools": {
+	"schools": [
+		{
          "name": "Columbia",
          "location": "New York, NY",
          "degree": "Master of Science",
          "majors": "Urban Planning",
          "dates": 2007,
          "url": "http://www.columbia.edu/"
-     },
-    "onlineCourses": {
+     	},
+     	{
+         "name": "SUNY Buffalo",
+         "location": "Buffalo, NY",
+         "degree": "Bachlor of Arts",
+         "majors": "Urban Planning",
+         "minors": ["Spanish","Japanese"],
+         "dates": 2007,
+         "url": "http://www.buffalo.edu/"
+     	}
+     ],
+    "onlineCourses":
+    [
+     {
          "title": "JavaScript Basics",
          "school": "Udacity",
          "date": 2015,
          "url": "http://www.Udacity.com/"
+     },
+     {
+         "title": "Intro to HTML and CSS",
+         "school": "Udacity",
+         "date": 2015,
+         "url": "http://www.Udacity.com/"
      }
+     ]
     //"display": function taking no 
+};
+
+//----------------------------------------------------------
+$("#header").append(HTMLbioPic.replace("%data%",bio.biopic));
+//----------------------------------------------------------
+
+//if skills are present, add to header
+if (bio.skills.length>0) {
+	$("#header").append(HTMLskillsStart);
+	for (i in bio.skills) {//i=0; i < bio.skills.length; i++) {
+		$("#skills").append(
+			HTMLskills.replace("%data%", bio.skills[i])
+			);
+	};
+};
+
+//add work experience
+for (j in work.jobs) {
+	$("#workExperience").append(
+	HTMLworkStart );
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[j].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[j].title);
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[j].location);
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[j].dates);
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[j].description);
+
+	$(".work-entry:last").append(
+		HTMLworkEmployer.replace("%data%", formattedEmployer +
+			formattedTitle+
+			formattedLocation+
+			formattedDates+
+			formattedDescription
+			)
+		);
 };
 
 
 
-//----------------------------------------------------------
-$("#main").append(
-	HTMLemail.replace("%data%",	bio.contacts.email)
-	);
-$("#main").append(
-	HTMLmobile.replace("%data%",	bio.contacts.mobile)
-	);
-$("#main").append(
-	HTMLtwitter.replace("%data%",	bio.contacts.twitter)
-	);
-$("#main").append(
-	HTMLgithub.replace("%data%",	bio.contacts.github)
-	);
-$("#main").append(
-	HTMLlocation.replace("%data%",	bio.contacts.location)
-	);
 
-
-$("#main").append(
-	HTMLbioPic.replace("%data%",	bio.biopic)
-	);
-
-
-
-$("#main").append(bio.welcome);
-$("#main").append( bio.location);
-
-$("#main").append( HTMLworkEmployer.replace("%data%",work["jobs"]["employer"])	);
-$("#main").append( HTMLworkTitle.replace("%data%",work.jobs.title));
-$("#main").append( HTMLworkDates.replace("%data%",work.jobs.dates));
-$("#main").append( HTMLworkLocation.replace("%data%",work.jobs.location));
-$("#main").append( HTMLworkDescription.replace("%data%",work.jobs.description));
-
-$("#main").append( HTMLschoolName.replace("%data%", education.schools.name));
