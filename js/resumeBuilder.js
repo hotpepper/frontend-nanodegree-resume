@@ -50,11 +50,17 @@ var bio = {
 bio.city = "New York";//adds city to bio object
 
 var work = {
-	"position": "planner",
+	"jobs": {
 		"employer": "DOT",
-		"yearsWorked": 5,
-		"city":"New York"
+		"title": "City Planner",
+		"location":"New York",
+		"dates":"8/1/2009 - Present",
+		"description" : "Senior Analyst"
+	}
+	//display: function taking no parameters
 };
+
+
 var education = {
 	"schools": {
          "name": "Columbia",
@@ -102,5 +108,10 @@ $("#main").append(
 $("#main").append(bio.welcome);
 $("#main").append( bio.location);
 
-$("#main").append( HTMLworkEmployer.replace("%data%",work["employer"])	);
+$("#main").append( HTMLworkEmployer.replace("%data%",work["jobs"]["employer"])	);
+$("#main").append( HTMLworkTitle.replace("%data%",work.jobs.title));
+$("#main").append( HTMLworkDates.replace("%data%",work.jobs.dates));
+$("#main").append( HTMLworkLocation.replace("%data%",work.jobs.location));
+$("#main").append( HTMLworkDescription.replace("%data%",work.jobs.description));
+
 $("#main").append( HTMLschoolName.replace("%data%", education.schools.name));
