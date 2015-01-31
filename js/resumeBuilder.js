@@ -154,6 +154,20 @@ projects.display = function() {
 };
 projects.display();
 
+bio.display = function() {
+		//$("#header").append(HTMLcontactGeneric);
+		$("#header").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+		$("#header").append(HTMLemail.replace("%data%", bio.contacts.email));
+		$("#header").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+		$("#header").append(HTMLgithub.replace("%data%", bio.contacts.github));
+		$("#header").append(HTMLlocation.replace("%data%", bio.contacts.location));
+
+	}
+
+bio.display();
+
+
+
 
 //----------------------------------------------------------
 $("#header").prepend(HTMLbioPic.replace("%data%",bio.biopic));
@@ -188,3 +202,5 @@ $(document).click(function(loc) {
 	logClicks(x,y);
 });
 
+//-----------------------map-------------------------
+$("#mapDiv").append(googleMap);
