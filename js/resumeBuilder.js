@@ -56,22 +56,51 @@ var work = {
 		"city":"New York"
 };
 var education = {
-	"name": "Udacity",
-	"Years": "2014"
+	"schools": {
+         "name": "Columbia",
+         "location": "New York, NY",
+         "degree": "Master of Science",
+         "majors": "Urban Planning",
+         "dates": 2007,
+         "url": "http://www.columbia.edu/"
+     },
+    "onlineCourses": {
+         "title": "JavaScript Basics",
+         "school": "Udacity",
+         "date": 2015,
+         "url": "http://www.Udacity.com/"
+     }
+    //"display": function taking no 
 };
 
 
 
+//----------------------------------------------------------
 $("#main").append(
-	HTMLprojectImage.replace("%data%",	bio.picture)
+	HTMLemail.replace("%data%",	bio.contacts.email)
 	);
 $("#main").append(
-	HTMLemail.replace("%data%",	bio.contactInfo.email)
+	HTMLmobile.replace("%data%",	bio.contacts.mobile)
 	);
 $("#main").append(
-	bio.welcome
+	HTMLtwitter.replace("%data%",	bio.contacts.twitter)
 	);
+$("#main").append(
+	HTMLgithub.replace("%data%",	bio.contacts.github)
+	);
+$("#main").append(
+	HTMLlocation.replace("%data%",	bio.contacts.location)
+	);
+
+
+$("#main").append(
+	HTMLbioPic.replace("%data%",	bio.biopic)
+	);
+
+
+
+$("#main").append(bio.welcome);
 $("#main").append( bio.location);
 
-$("#main").append( HTMLworkEmployer.replace("%data%",work["position"])	);
-$("#main").append( HTMLschoolName.replace("%data%", education.name));
+$("#main").append( HTMLworkEmployer.replace("%data%",work["employer"])	);
+$("#main").append( HTMLschoolName.replace("%data%", education.schools.name));
