@@ -150,6 +150,9 @@ img {
   padding: 10px;
 }
 
+imageSmall {
+  max-height: 200px;
+}
 /* Bar chart stuff */
 .chart div {
   font: 10px sans-serif;

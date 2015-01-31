@@ -1,4 +1,5 @@
 
+//---------------------JSON---------------
 var work = {
 	"jobs": [
 	{
@@ -28,18 +29,18 @@ var work = {
 
 
 var projects = {
-	"projects": [
+	"project": [
 		{
-			"title": "string ",
-			"dates": "string (works with a hyphen between them)",
-			"description": "string",
-			"images":["/images/sample.jpg", "/images/sample.jpg"]
+			"title": "Project Number 1",
+			"dates": "yesturday - today",
+			"description": "awesome project that is temporarily represented by phillip j fry",
+			"images":["images/fry.jpg", "images/fry.jpg"]
 			//"display": function taking no parameters
 		},
 		{
-			"title": "string",
-			"dates": "string - string",
-			"description": "string",
+			"title": "roject Number 2",
+			"dates": "today - tomorrow",
+			"description": "yet another awesome project from seth",
 			"images":["images/fry.jpg", "images/fry.jpg"]
 			//"display": function taking no parameters
 		}
@@ -102,8 +103,60 @@ var education = {
     //"display": function taking no 
 };
 
+
+//---------------------functions---------------
+var displayWork = function() {
+	//add work experience
+	for (j in work.jobs) {
+		$("#workExperience").append(
+		HTMLworkStart );
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[j].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[j].title);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[j].location);
+		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[j].dates);
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[j].description);
+
+		$(".work-entry:last").append(
+			HTMLworkEmployer.replace("%data%", formattedEmployer +
+				formattedTitle+
+				formattedLocation+
+				formattedDates+
+				formattedDescription
+				)
+			);
+	};
+};
+//-------------------encapulste display function in projects------------------
+
+projects.display = function() {
+	for (p in projects.project) {
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.project[p].title);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.project[p].description);
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.project[p].dates);
+
+		var formattedImage = HTMLprojectImage.replace("%data%", projects.project[p].images[0])
+
+		$(".project-entry:last").append(
+			formattedTitle+
+			formattedDescription+
+			formattedDates
+			);
+		for (i in projects.project[p].images) {
+			$(".project-entry:last").append(
+				HTMLprojectImage.replace("%data%", projects.project[p].images[i])
+				)
+		}
+		console.log(projects.project[p].description)
+	}
+
+	//HTMLprojectImage
+};
+projects.display();
+
+
 //----------------------------------------------------------
-$("#header").append(HTMLbioPic.replace("%data%",bio.biopic));
+$("#header").prepend(HTMLbioPic.replace("%data%",bio.biopic));
 //----------------------------------------------------------
 
 //if skills are present, add to header
@@ -116,26 +169,22 @@ if (bio.skills.length>0) {
 	};
 };
 
-//add work experience
-for (j in work.jobs) {
-	$("#workExperience").append(
-	HTMLworkStart );
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[j].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[j].title);
-	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[j].location);
-	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[j].dates);
-	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[j].description);
+displayWork();
 
-	$(".work-entry:last").append(
-		HTMLworkEmployer.replace("%data%", formattedEmployer +
-			formattedTitle+
-			formattedLocation+
-			formattedDates+
-			formattedDescription
-			)
-		);
+//---------------------internationalize-----------------
+
+$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+var inName = function () {
+	return bio.name.split(" ")[0]+" "+ bio.name.split(" ")[1].toUpperCase();
 };
+//add button
+$("#main").append(internationalizeButton);
 
+//-------------------log click X/Ys------------------
+$(document).click(function(loc) {
+	var x = loc.pageX;
+	var y = loc.pageY;
 
-
+	logClicks(x,y);
+});
 
